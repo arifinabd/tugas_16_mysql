@@ -1,0 +1,113 @@
+Microsoft Windows [Version 10.0.19042.1415]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Arifin>mongo
+MongoDB shell version v5.0.2
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("eb6d7fd5-c585-4c46-a144-7c372c6b3948") }
+MongoDB server version: 5.0.2
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+We recommend you begin using "mongosh".
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2021-12-23T14:21:09.631+07:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+1. ========================================================================================================================
+
+> use matkul
+switched to db matkul
+>
+> db.matkul.save(
+... {
+... matkul:"Algoritma & Pemograman",
+... kode_matkul: "1234567",
+... nama_dosen:"Jamal Kosasih"
+... }
+... );
+WriteResult({ "nInserted" : 1 })
+> db.matkul.save( { matkul:"Rekayasa Perangkat Lunak", kode_matkul: "1234568", nama_dosen:"Ivan Bagus" } );
+WriteResult({ "nInserted" : 1 })
+> db.matkul.save( { matkul:"Sistem Basis Data", kode_matkul: "1234569", nama_dosen:"Adina Nur Afika" } );
+WriteResult({ "nInserted" : 1 })
+> db.matkul.save( { matkul:"Pengantar Ilmu Komputer", kode_matkul: "1234561", nama_dosen:"Nico Ariesto" } );
+WriteResult({ "nInserted" : 1 })
+> db.matkul.save( { matkul:"Bahasa Indonesia", kode_matkul: "1234562", nama_dosen:"Fifi Meilani" } );
+WriteResult({ "nInserted" : 1 })
+>
+> db.matkul.find()
+{ "_id" : ObjectId("61d6b7a7a3cd540573112f87"), "matkul" : "Algoritma & Pemograman", "kode_matkul" : "1234567", "nama_dosen" : "Jamal Kosasih" }
+{ "_id" : ObjectId("61d6b7f2a3cd540573112f88"), "matkul" : "Rekayasa Perangkat Lunak", "kode_matkul" : "1234568", "nama_dosen" : "Ivan Bagus" }
+{ "_id" : ObjectId("61d6b827a3cd540573112f89"), "matkul" : "Sistem Basis Data", "kode_matkul" : "1234569", "nama_dosen" : "Adina Nur Afika" }
+{ "_id" : ObjectId("61d6b862a3cd540573112f8a"), "matkul" : "Pengantar Ilmu Komputer", "kode_matkul" : "1234561", "nama_dosen" : "Nico Ariesto" }
+{ "_id" : ObjectId("61d6b882a3cd540573112f8b"), "matkul" : "Bahasa Indonesia", "kode_matkul" : "1234562", "nama_dosen" : "Fifi Meilani" }
+>
+>
+
+2. ========================================================================================================================
+
+> db.matkul.update(
+... {kode_matkul:"1234562"},
+... {$set:{nama_dosen:"Sekar Wandasari"}},
+... false,true
+... );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.matkul.find()
+{ "_id" : ObjectId("61d6b7a7a3cd540573112f87"), "matkul" : "Algoritma & Pemograman", "kode_matkul" : "1234567", "nama_dosen" : "Jamal Kosasih" }
+{ "_id" : ObjectId("61d6b7f2a3cd540573112f88"), "matkul" : "Rekayasa Perangkat Lunak", "kode_matkul" : "1234568", "nama_dosen" : "Ivan Bagus" }
+{ "_id" : ObjectId("61d6b827a3cd540573112f89"), "matkul" : "Sistem Basis Data", "kode_matkul" : "1234569", "nama_dosen" : "Adina Nur Afika" }
+{ "_id" : ObjectId("61d6b862a3cd540573112f8a"), "matkul" : "Pengantar Ilmu Komputer", "kode_matkul" : "1234561", "nama_dosen" : "Nico Ariesto" }
+{ "_id" : ObjectId("61d6b882a3cd540573112f8b"), "matkul" : "Bahasa Indonesia", "kode_matkul" : "1234562", "nama_dosen" : "Sekar Wandasari" }
+>
+>
+
+3. ========================================================================================================================
+
+> db.matkul.remove(
+... {nama_dosen: "Jamal Kosasih"},
+... );
+WriteResult({ "nRemoved" : 1 })
+> db.matkul.find()
+{ "_id" : ObjectId("61d6b7f2a3cd540573112f88"), "matkul" : "Rekayasa Perangkat Lunak", "kode_matkul" : "1234568", "nama_dosen" : "Ivan Bagus" }
+{ "_id" : ObjectId("61d6b827a3cd540573112f89"), "matkul" : "Sistem Basis Data", "kode_matkul" : "1234569", "nama_dosen" : "Adina Nur Afika" }
+{ "_id" : ObjectId("61d6b862a3cd540573112f8a"), "matkul" : "Pengantar Ilmu Komputer", "kode_matkul" : "1234561", "nama_dosen" : "Nico Ariesto" }
+{ "_id" : ObjectId("61d6b882a3cd540573112f8b"), "matkul" : "Bahasa Indonesia", "kode_matkul" : "1234562", "nama_dosen" : "Sekar Wandasari" }
+>
+> db.matkul.remove( {nama_dosen: "Ivan Bagus"} );
+WriteResult({ "nRemoved" : 1 })
+> db.matkul.find()
+{ "_id" : ObjectId("61d6b827a3cd540573112f89"), "matkul" : "Sistem Basis Data", "kode_matkul" : "1234569", "nama_dosen" : "Adina Nur Afika" }
+{ "_id" : ObjectId("61d6b862a3cd540573112f8a"), "matkul" : "Pengantar Ilmu Komputer", "kode_matkul" : "1234561", "nama_dosen" : "Nico Ariesto" }
+{ "_id" : ObjectId("61d6b882a3cd540573112f8b"), "matkul" : "Bahasa Indonesia", "kode_matkul" : "1234562", "nama_dosen" : "Sekar Wandasari" }
+>
+>
+
+4. ==========================================================================================================================
+
+> db.dropDatabase();
+{ "ok" : 1 }
+> show databases
+TokoBaju     0.000GB
+admin        0.000GB
+config       0.000GB
+ecommerce    0.000GB
+ecommerce55  0.000GB
+local        0.000GB
+mahasiswa    0.000GB
